@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
     private PlayRoom room;
     private TextView moveCount, feedback;
     private int screen, level, resultSteps;
+    private BackNavigation backNavigation;
 
     @Override
     protected void onCreate(Bundle saved) {
@@ -62,6 +63,7 @@ public class MainActivity extends Activity {
                     return insets;
                 });
         setContentView(viewport);
+        if (Build.VERSION.SDK_INT >= 33) backNavigation = new BackNavigation(this);
         level = saved == null ? 0 : saved.getInt("level", 0);
         int restore = saved == null ? HOME : saved.getInt("screen", HOME);
         resultSteps = saved == null ? 0 : saved.getInt("resultSteps", 0);
@@ -89,6 +91,7 @@ public class MainActivity extends Activity {
     }
 
     private void page(int next) {
+        if (backNavigation != null) backNavigation.setEnabled(next != HOME);
         screen = next;
         room = null;
         viewport.removeAllViews();
@@ -226,7 +229,7 @@ public class MainActivity extends Activity {
         mast.setGravity(Gravity.TOP);
         lead.addView(mast, MATCH, WRAP);
         TextView title = text(this, "Material\nMischief", 52, INK, true);
-        title.setLetterSpacing(-.065f);
+        title.setLetterSpacing(-.038f);
         title.setLineSpacing(-d(6), 1f);
         title.setTypeface(Typeface.create("sans-serif-black", Typeface.NORMAL));
         mast.addView(title, grow());
@@ -238,7 +241,10 @@ public class MainActivity extends Activity {
         lead.addView(brief);
         MischiefArt art = new MischiefArt(this, -1);
         art.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        poster.addView(art, MATCH, d(wide ? 184 : 156));
+        LinearLayout.LayoutParams artSize =
+                new LinearLayout.LayoutParams(MATCH, d(wide ? 184 : 156));
+        artSize.setMargins(d(2), 0, d(2), 0);
+        poster.addView(art, artSize);
         LinearLayout controls = column(this);
         inset(controls, 12, 0, 12, 12);
         poster.addView(controls, MATCH, WRAP);
@@ -319,7 +325,7 @@ public class MainActivity extends Activity {
         LinearLayout meta = row(this);
         content.addView(meta, MATCH, WRAP);
         meta.addView(chip(c.component, LILAC));
-        meta.addView(new View(this), grow());
+        meta.addView(new android.widget.Space(this), new LinearLayout.LayoutParams(0, 1, 1f));
         moveCount = mono(this, steps() + " 步", 14, MUTED);
         meta.addView(moveCount);
         space(content, 12);
@@ -534,6 +540,29 @@ public class MainActivity extends Activity {
         sw.setChecked(prefs.getBoolean(key, initial));
         sw.setOnCheckedChangeListener((v, on) -> prefs.edit().putBoolean(key, on).apply());
         panel.addView(sw, MATCH, WRAP);
+    }
+
+    @android.annotation.TargetApi(33)
+    private static final class BackNavigation {
+        private final android.window.OnBackInvokedDispatcher dispatcher;
+        private final android.window.OnBackInvokedCallback callback;
+        private boolean enabled;
+
+        BackNavigation(MainActivity activity) {
+            dispatcher = activity.getOnBackInvokedDispatcher();
+            callback = activity::home;
+        }
+
+        void setEnabled(boolean value) {
+            if (value == enabled) return;
+            if (value) {
+                dispatcher.registerOnBackInvokedCallback(
+                        android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, callback);
+            } else {
+                dispatcher.unregisterOnBackInvokedCallback(callback);
+            }
+            enabled = value;
+        }
     }
 
     @Override
