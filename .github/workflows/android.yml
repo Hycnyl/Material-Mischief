@@ -21,8 +21,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
-      - name: Install Android SDK
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+        with:
+          packages: 'platforms;android-35 build-tools;35.0.0'
       - name: Lint, test and build
         run: ./gradlew --no-daemon lintDebug testDebugUnitTest assembleDebug assembleRelease
       - uses: actions/upload-artifact@v4
@@ -50,8 +50,8 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
-      - name: Install signing tools
-        run: sdkmanager 'build-tools;35.0.0'
+        with:
+          packages: 'build-tools;35.0.0'
       - uses: actions/download-artifact@v4
         with:
           name: unsigned-tag-build
