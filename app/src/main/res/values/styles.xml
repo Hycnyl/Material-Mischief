@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Material Mischief</string>
+    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowBackground">#F8F7EF</item>
+        <item name="android:colorAccent">#486926</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#F8F7EF</item>
+        <item name="android:navigationBarColor">#F8F7EF</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

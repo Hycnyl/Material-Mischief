@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="64dp" android:height="64dp" android:viewportWidth="64" android:viewportHeight="64" android:autoMirrored="false">
+    <path android:pathData="M15,1 H49 Q63,1 63,15 V49 Q63,63 49,63 H15 Q1,63 1,49 V15 Q1,1 15,1 Z" android:fillColor="#FFE0D4" />
+    <group android:name="snackbar" android:rotation="-6" android:pivotX="31" android:pivotY="31">
+        <path android:pathData="M14,20 H49 Q54,20 54,25 V40 Q54,45 49,45 H14 Q9,45 9,40 V25 Q9,20 14,20 Z" android:fillColor="#192019" />
+        <path android:pathData="M13,16 H49 Q54,16 54,21 V37 Q54,42 49,42 H13 Q8,42 8,37 V21 Q8,16 13,16 Z" android:fillColor="#F8F7EF" android:strokeColor="#192019" android:strokeWidth="2" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M13,24 H25 M13,28 H23" android:strokeColor="#192019" android:strokeWidth="1.8" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M45,24 Q50,25 48,31 Q46,35 39,33 L41,30 Q45,31 45,28 Q45,26.5 41,26.5 V29 L36,25 L41,21 V24 Z" android:fillColor="#192019" />
+    </group>
+    <path android:pathData="M18,48 L27,47 M31,47 L37,46" android:strokeColor="#192019" android:strokeWidth="1.55" android:strokeLineJoin="round" android:strokeLineCap="round" />
+</vector>

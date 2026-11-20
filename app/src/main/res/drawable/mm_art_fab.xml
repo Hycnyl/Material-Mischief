@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="64dp" android:height="64dp" android:viewportWidth="64" android:viewportHeight="64" android:autoMirrored="false">
+    <path android:pathData="M15,1 H49 Q63,1 63,15 V49 Q63,63 49,63 H15 Q1,63 1,49 V15 Q1,1 15,1 Z" android:fillColor="#EEE2F3" />
+    <path android:pathData="M8,42 L21,38 M10,47 L22,43 M18,50 L24,48" android:strokeColor="#192019" android:strokeWidth="1.6" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    <group android:name="flying_button" android:rotation="-12" android:pivotX="36" android:pivotY="32">
+        <path android:pathData="M29,18 H40 Q50,18 50,28 V39 Q50,49 40,49 H29 Q19,49 19,39 V28 Q19,18 29,18 Z" android:fillColor="#192019" />
+        <path android:pathData="M29,15 H40 Q50,15 50,25 V36 Q50,46 40,46 H29 Q19,46 19,36 V25 Q19,15 29,15 Z" android:fillColor="#CEC6FF" android:strokeColor="#192019" android:strokeWidth="2" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M28,30 H41 M34.5,23.5 V36.5" android:strokeColor="#192019" android:strokeWidth="2.8" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    </group>
+    <path android:pathData="M50,7.7 Q51,10 54.3,12 Q52,13 50,16.3 Q49,14 45.7,12 Q48,11 50,7.7 Z" android:fillColor="#FF856D" android:strokeColor="#192019" android:strokeWidth="1.15" android:strokeLineJoin="round" android:strokeLineCap="round" />
+</vector>

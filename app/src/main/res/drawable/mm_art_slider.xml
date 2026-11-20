@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="64dp" android:height="64dp" android:viewportWidth="64" android:viewportHeight="64" android:autoMirrored="false">
+    <path android:pathData="M15,1 H49 Q63,1 63,15 V49 Q63,63 49,63 H15 Q1,63 1,49 V15 Q1,1 15,1 Z" android:fillColor="#E6E1FA" />
+    <group android:name="slider" android:rotation="-12" android:pivotX="32" android:pivotY="32">
+        <path android:pathData="M12.5,30 H51.5 A3.5,3.5 0,0 1,51.5,37 H12.5 A3.5,3.5 0,0 1,12.5,30 Z" android:fillColor="#192019" />
+        <path android:pathData="M12.0,28 H52.0 A3.0,3.0 0,0 1,52.0,34 H12.0 A3.0,3.0 0,0 1,12.0,28 Z" android:fillColor="#F8F7EF" android:strokeColor="#192019" android:strokeWidth="1.7" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M32,28 H43 V34 H32 Z" android:fillColor="#CEC6FF" />
+        <path android:pathData="M25,18 H31 Q36,18 36,23 V40 Q36,45 31,45 H25 Q20,45 20,40 V23 Q20,18 25,18 Z" android:fillColor="#192019" />
+        <path android:pathData="M24,16 H30 Q35,16 35,21 V37 Q35,42 30,42 H24 Q19,42 19,37 V21 Q19,16 24,16 Z" android:fillColor="#CEC6FF" android:strokeColor="#192019" android:strokeWidth="2" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M24,23 V32 M29,22 V31" android:strokeColor="#192019" android:strokeWidth="1.8" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    </group>
+    <path android:pathData="M38,12 L40,9 M43,16 L48,14" android:strokeColor="#192019" android:strokeWidth="1.5" android:strokeLineJoin="round" android:strokeLineCap="round" />
+</vector>

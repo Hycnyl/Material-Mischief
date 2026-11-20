@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+}
+
+def keystorePath = providers.environmentVariable('MM_KEYSTORE').orNull
+def signingPassword = providers.environmentVariable('MM_KEYSTORE_PASSWORD').orNull
+
+android {
+    namespace 'dev.materialmischief.app'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+
+    defaultConfig {
+        applicationId 'dev.materialmischief.app'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+        testInstrumentationRunner 'android.test.InstrumentationTestRunner'
+    }
+    if (keystorePath != null) {
+        signingConfigs {
+            distribution {
+                storeFile file(keystorePath)
+                storePassword signingPassword
+                keyAlias 'mischief'
+                keyPassword signingPassword
+            }
+        }
+    }
+    buildTypes {
+        release {
+            vcsInfo.include = false
+            if (keystorePath != null) {
+                signingConfig signingConfigs.distribution
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

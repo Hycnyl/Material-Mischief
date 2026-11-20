@@ -1,0 +1,95 @@
+name: Android
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install Android SDK
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Lint, test and build
+        run: ./gradlew --no-daemon lintDebug testDebugUnitTest assembleDebug assembleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: material-mischief-debug
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          name: unsigned-tag-build
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          if-no-files-found: error
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install signing tools
+        run: sdkmanager 'build-tools;35.0.0'
+      - uses: actions/download-artifact@v4
+        with:
+          name: unsigned-tag-build
+          path: unsigned
+      - name: Sign the tag build or verify an offline signature
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          build_tools="$ANDROID_HOME/build-tools/35.0.0"
+          mkdir -p dist
+          unsigned=unsigned/app-release-unsigned.apk
+          apk=dist/Material-Mischief.apk
+          if [[ -n "$KEYSTORE_BASE64" ]]; then
+            umask 077
+            key="$RUNNER_TEMP/material-mischief.p12"
+            trap 'rm -f "$key"' EXIT
+            printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$key"
+            "$build_tools/apksigner" sign --ks "$key" --ks-key-alias mischief \
+              --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
+              --out "$apk" "$unsigned"
+          else
+            git fetch --no-tags --depth=1 origin refs/heads/signed-apks
+            test "$(git show "FETCH_HEAD:$GITHUB_REF_NAME/commit.txt")" = "$(git rev-parse HEAD)"
+            git show "FETCH_HEAD:$GITHUB_REF_NAME/Material-Mischief.apk" > "$apk"
+          fi
+          python3 .github/scripts/check-apk-payload.py "$unsigned" "$apk"
+          "$build_tools/apksigner" verify --verbose --print-certs "$apk" > "$RUNNER_TEMP/certs"
+          grep -Fx 'Signer #1 certificate SHA-256 digest: f87b42cab153ea16e9abe9a9cac7162c9455046bb78131bce497aa9a36fa5442' "$RUNNER_TEMP/certs"
+          "$build_tools/aapt" dump badging "$apk" > "$RUNNER_TEMP/badging"
+          grep "^package: name='dev.materialmischief.app'" "$RUNNER_TEMP/badging" | grep -F "versionName='${GITHUB_REF_NAME#v}'"
+          (cd dist && sha256sum Material-Mischief.apk > SHA256SUMS.txt)
+      - name: Publish APK and checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/Material-Mischief.apk dist/SHA256SUMS.txt \
+            --verify-tag --title "Material Mischief ${GITHUB_REF_NAME#v}" \
+            --notes "Android 6.0 及以上版本可下载并安装 Material-Mischief.apk。SHA256SUMS.txt 用于校验安装包。"

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="64dp" android:height="64dp" android:viewportWidth="64" android:viewportHeight="64" android:autoMirrored="false">
+    <path android:pathData="M15,1 H49 Q63,1 63,15 V49 Q63,63 49,63 H15 Q1,63 1,49 V15 Q1,1 15,1 Z" android:fillColor="#DCEFE2" />
+    <group android:name="about" android:rotation="-6" android:pivotX="32" android:pivotY="32">
+        <path android:pathData="M22,10 H43 Q48,10 48,15 V50 Q48,55 43,55 H22 Q17,55 17,50 V15 Q17,10 22,10 Z" android:fillColor="#192019" />
+        <path android:pathData="M21,8 H42 Q47,8 47,13 V48 Q47,53 42,53 H21 Q16,53 16,48 V13 Q16,8 21,8 Z" android:fillColor="#F8F7EF" android:strokeColor="#192019" android:strokeWidth="2" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M22,14 H41 Q44,14 44,17 V43 Q44,46 41,46 H22 Q19,46 19,43 V17 Q19,14 22,14 Z" android:fillColor="#C2F675" android:strokeColor="#192019" android:strokeWidth="1.4" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M28,11 H34 M29,49 H34" android:strokeColor="#192019" android:strokeWidth="1.5" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M21,37 Q21.5,28 31.5,28 Q40,28 42,37 Z" android:fillColor="#DBFF9F" android:strokeColor="#192019" android:strokeWidth="1.65" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M25,29 L23,25 M37,29 L40,25" android:strokeColor="#192019" android:strokeWidth="1.5" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M25.85,32.5 A1.15,1.15 0,1 0,28.15,32.5 A1.15,1.15 0,1 0,25.85,32.5 Z" android:fillColor="#192019" />
+        <path android:pathData="M34.85,32.5 A1.15,1.15 0,1 0,37.15,32.5 A1.15,1.15 0,1 0,34.85,32.5 Z" android:fillColor="#192019" />
+    </group>
+    <path android:pathData="M50,13.7 Q51,15 53.3,17 Q52,18 50,20.3 Q49,19 46.7,17 Q48,16 50,13.7 Z" android:fillColor="#FF856D" android:strokeColor="#192019" android:strokeWidth="1.1" android:strokeLineJoin="round" android:strokeLineCap="round" />
+</vector>

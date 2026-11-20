@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="64dp" android:height="64dp" android:viewportWidth="64" android:viewportHeight="64" android:autoMirrored="false">
+    <path android:pathData="M15,1 H49 Q63,1 63,15 V49 Q63,63 49,63 H15 Q1,63 1,49 V15 Q1,1 15,1 Z" android:fillColor="#E5F4C9" />
+    <group android:name="tilted_switch" android:rotation="-13" android:pivotX="32" android:pivotY="32">
+        <path android:pathData="M20.0,22 H44.0 A12.0,12.0 0,0 1,44.0,46 H20.0 A12.0,12.0 0,0 1,20.0,22 Z" android:fillColor="#192019" />
+        <path android:pathData="M20.0,19 H44.0 A12.0,12.0 0,0 1,44.0,43 H20.0 A12.0,12.0 0,0 1,20.0,19 Z" android:fillColor="#C2F675" android:strokeColor="#192019" android:strokeWidth="2.25" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M32.9,31 A9.1,9.1 0,1 0,51.1,31 A9.1,9.1 0,1 0,32.9,31 Z" android:fillColor="#F8F7EF" android:strokeColor="#192019" android:strokeWidth="1.8" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M38.1,30 A1.9,3 0,1 0,41.9,30 A1.9,3 0,1 0,38.1,30 Z" android:fillColor="#192019" />
+        <path android:pathData="M43.1,29.3 A1.9,3 0,1 0,46.9,29.3 A1.9,3 0,1 0,43.1,29.3 Z" android:fillColor="#192019" />
+        <path android:pathData="M41,35 Q43,36 45,33" android:strokeColor="#192019" android:strokeWidth="1.2" android:strokeLineJoin="round" android:strokeLineCap="round" />
+        <path android:pathData="M15,27 L22,27" android:strokeColor="#719841" android:strokeWidth="1.6" android:strokeLineJoin="round" android:strokeLineCap="round" />
+    </group>
+</vector>
