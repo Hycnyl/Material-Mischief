@@ -6,6 +6,12 @@
 
 支持 Android 6.0 及以上版本，简体中文，离线单机。APK 使用原生 Android View 与矢量插画，游戏无需申请任何权限。
 
+<p>
+  <img src="docs/screenshots/home.png" width="230" alt="彩蛋稽查处首页与逃跑的开关" />
+  <img src="docs/screenshots/switch.png" width="230" alt="第一案的三个连动开关" />
+  <img src="docs/screenshots/slider.png" width="230" alt="固定指针下可以移动的刻度尺" />
+</p>
+
 ## 六起案件
 
 | 案件 | 报案记录 |
